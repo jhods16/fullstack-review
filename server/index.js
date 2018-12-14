@@ -1,13 +1,17 @@
 const express = require('express');
 let app = express();
-const helpers = require('../helpers/github.js')
+const helpers = require('../helpers/github.js');
+const db = require('../database')
 
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/repos', function (req, res) {
   // TODO - your code here!
   helpers.getReposByUsername('jhods16', (result) => {
-    console.log(result);
+    db.save(result, (err) => {
+      console.log(err)
+    })
+    // console.log(result);
   })
 
   res.send('here you go!')
