@@ -35,8 +35,11 @@ let save = (repos, callback) => {
     })
 
     repo.id.save((err, repo) => {
-      if (err) return console.error(err);
-      console.log('saved:', repo)
+      if (err) {
+        return callback(err);
+      } else {
+        console.log('saved:', repo) 
+      }
     })
   }
   callback()
@@ -51,7 +54,7 @@ let find = (callback) => {
   
 }
 
-find((repos) => {console.log(repos)} )
+// find((repos) => {console.log(repos)} )
 
 let deleteAll = (callback) => {
   Repo.deleteMany({}, (err) => {
