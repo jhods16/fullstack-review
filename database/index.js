@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
-  repoId: Number, 
-  username: String,
-  title: String,
-  url: String,
-  description: String,
-  forks: Number,
-  stargazers: Number
+  repoId: Number, // id
+  username: String, // owner.login
+  title: String, // name
+  url: String, // html_url
+  description: String, // description
+  forks: Number, // forks_count
+  stargazers: Number // stargazers_count
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
