@@ -15,15 +15,16 @@ class App extends React.Component {
   search (term) {
     console.log(`${term} was searched`);
 
-    post(term, () => {console.log('saved')}, (err) => {console.log(err)})
-    // $.ajax({
-    //   url: 'http://localhost:1128/repos',
-    //   method: 'POST',
-    //   contentType: 'text/plain',
-    //   data: term,
-    //   success: (res) => {console.log(res)},
-    //   error: (err) => {console.log(err)}
-    // })
+    post(term, () => {
+      $.ajax({
+        url: 'http://localhost:1128/repos',
+        method: 'GET',
+        contentType: 'text/plain',
+        success: (data) => {this.setState({repos: JSON.parse(data)})},
+        error: (err) => console.log(err)
+      })
+    }, (err) => {console.log(err)})
+
   }
 
   componentDidMount() {

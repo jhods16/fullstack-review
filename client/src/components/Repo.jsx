@@ -6,7 +6,7 @@ const Repo = function(props) {
     <td> {props.username} </td>
     <td> {props.title} </td>
     <td> {props.description} </td>
-    <td> {props.url} </td>
+    <td><a href={props.url}>{props.url}</a></td>
     <td> {props.forks} </td>   
     <td> {props.stargazers} </td> 
   </tr>

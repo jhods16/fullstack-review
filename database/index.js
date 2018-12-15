@@ -48,13 +48,12 @@ module.exports.save = (repos, callback) => {
 module.exports.find = (callback) => {
 
   Repo.find((err, repos) => {
-    // console.log('found the repos:', repos);
     callback(repos);
   })
   
 }
 
-// find((repos) => {console.log(repos)} )
+// module.exports.find((repos) => {console.log(repos)} )
 
 let deleteAll = (callback) => {
   Repo.deleteMany({}, (err) => {
