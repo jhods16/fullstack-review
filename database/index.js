@@ -13,7 +13,7 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (repos, callback) => {
+module.exports.save = (repos, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
@@ -45,7 +45,7 @@ let save = (repos, callback) => {
   callback()
 }
 
-let find = (callback) => {
+module.exports.find = (callback) => {
 
   Repo.find((err, repos) => {
     // console.log('found the repos:', repos);
@@ -64,4 +64,4 @@ let deleteAll = (callback) => {
 
 // deleteAll((repos) => {console.log(repos)} )
 
-module.exports.save = save;
+// module.exports.save = save;
