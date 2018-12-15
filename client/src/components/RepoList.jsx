@@ -7,6 +7,7 @@ const RepoList = (props) => (
     <table style={{border: '1px solid black'}}>
       <tbody>
         <tr>
+          <td><b> Rating </b></td>
           <td><b> Username </b></td>
           <td><b> Title </b></td>
           <td><b> Description </b></td>
@@ -14,8 +15,8 @@ const RepoList = (props) => (
           <td><b> Stargazers </b></td>
         </tr>
 
-    {props.repos.map((repo) => {
-      return <Repo username={repo.username} title={repo.title} url={repo.url} description={repo.description} forks={repo.forks} stargazers={repo.stargazers} />
+    {props.repos.map((repo, i) => {
+      return <Repo num={i+1} username={repo.username} title={repo.title} url={repo.url} description={repo.description} forks={repo.forks} stargazers={repo.stargazers} />
     })}
       </tbody>
     </table>
