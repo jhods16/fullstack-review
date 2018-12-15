@@ -37,19 +37,18 @@ module.exports.save = (repos, callback) => {
     repo.id.save((err, repo) => {
       if (err) {
         return callback(err);
-      } else {
-        console.log('saved:', repo) 
-      }
+      } 
     })
   }
   callback()
 }
 
-module.exports.find = (callback) => {
+module.exports.findTop25 = (callback) => {
 
-  Repo.find((err, repos) => {
+  Repo.find({}).sort({stargazers: 'descending'}).limit(25).exec((err, repos) => {
     callback(repos);
   })
+
   
 }
 
