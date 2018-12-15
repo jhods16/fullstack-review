@@ -10,18 +10,29 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
   }
 
   search (term) {
     console.log(`${term} was searched`);
+
+    post(term, () => {console.log('saved')}, (err) => {console.log(err)})
+    // $.ajax({
+    //   url: 'http://localhost:1128/repos',
+    //   method: 'POST',
+    //   contentType: 'text/plain',
+    //   data: term,
+    //   success: (res) => {console.log(res)},
+    //   error: (err) => {console.log(err)}
+    // })
+  }
+
+  componentDidMount() {
     $.ajax({
       url: 'http://localhost:1128/repos',
-      method: 'POST',
+      method: 'GET',
       contentType: 'text/plain',
-      data: term,
-      success: (res) => {console.log(res)},
-      error: (err) => {console.log(err)}
+      success: (data) => {this.setState({repos: JSON.parse(data)})},
+      error: (err) => console.log(err)
     })
   }
 
@@ -35,3 +46,14 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+var post = function(term, successcb, errorcb = null) {
+    $.ajax({
+      url: 'http://localhost:1128/repos',
+      method: 'POST',
+      contentType: 'text/plain',
+      data: term,
+      success: successcb,
+      error: errorcb
+  })
+}
